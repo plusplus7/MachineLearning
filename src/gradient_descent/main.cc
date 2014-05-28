@@ -6,6 +6,7 @@ int main(int argc, char **argv)
   bgd->work_start(data);
   bgd->work_getanswer();
   bgd->show_result();
+  bgd->work_clear();
   delete bgd;
   return 0;
 }

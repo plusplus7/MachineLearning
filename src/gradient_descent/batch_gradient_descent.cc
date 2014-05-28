@@ -67,7 +67,10 @@ double BatchGradientDescent::h_theta(double *x, double *t) {
 }
 void BatchGradientDescent::show_result() {
   for (int i=0; i<=n; i++) {
-    printf("theta %d: %.3f\n", i, theta[i]);
+    printf("theta %d: %.6f\n", i, theta[i]);
+  }
+  for (int i=0; i<m; i++) {
+    printf("h_theta %d: %.6f\n", i, h_theta(x[i],theta));
   }
 }
 void BatchGradientDescent::work_clear() {
