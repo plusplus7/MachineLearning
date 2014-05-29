@@ -10,3 +10,4 @@ Algorithm list
 
 * Batch gradient descent
 * Stochastic gradient descent
+* Locally weighted linear regression
