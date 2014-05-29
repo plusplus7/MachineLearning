@@ -1,9 +1,9 @@
-main: main.o bgd.o
-	g++ -o main main.o bgd.o
+main: main.o sgd.o
+	g++ -o main main.o sgd.o
 main.o: main.cc	
 	g++ -o main.o -c main.cc
-bgd.o: batch_gradient_descent.cc batch_gradient_descent.h
-	g++ -o bgd.o -c batch_gradient_descent.cc
+sgd.o: stochastic_gradient_descent.cc stochastic_gradient_descent.h
+	g++ -o sgd.o -c stochastic_gradient_descent.cc
 
 clean:
 	rm *.o

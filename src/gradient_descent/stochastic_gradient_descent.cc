@@ -1,9 +1,9 @@
 #include <cstdio>
 #include <cmath>
 #include <cstring>
-#include "batch_gradient_descent.h"
+#include "stochastic_gradient_descent.h"
 #define eps 1e-8
-BatchGradientDescent::BatchGradientDescent() {
+StochasticGradientDescent::StochasticGradientDescent() {
   m=0;
   n=0;
   x=NULL;
@@ -11,8 +11,8 @@ BatchGradientDescent::BatchGradientDescent() {
   theta=NULL;
   rate=0.001;
 }
-BatchGradientDescent::~BatchGradientDescent() {}
-int BatchGradientDescent::work_start(char *filename) {
+StochasticGradientDescent::~StochasticGradientDescent() {}
+int StochasticGradientDescent::work_start(char *filename) {
   FILE *fp=fopen(filename,"r");
   if ( fp == NULL )
     return -1;
@@ -37,7 +37,7 @@ int BatchGradientDescent::work_start(char *filename) {
   }
   return 0;
 }
-bool BatchGradientDescent::check_convergence() {
+bool StochasticGradientDescent::check_convergence() {
   int i;
   for (i=0; i<=n; i++) {
     if (fabs(o_theta-theta) > eps)
@@ -45,27 +45,25 @@ bool BatchGradientDescent::check_convergence() {
   }
   return i == n;
 }
-bool BatchGradientDescent::work_getanswer() {
-  for (int round=0; round<100000 && !check_convergence(); round++) {
+bool StochasticGradientDescent::work_getanswer() {
+  for (int round=0; round<1000 && !check_convergence(); round++) {
     memcpy(o_theta,theta,sizeof(theta));
-    for (int i=0; i<=n; i++) {
-      double sum_cost=0.0;
-      for (int j=0; j<m; j++) {
-        sum_cost+=(y[j]-h_theta(x[j],theta))*x[j][i];
+    for (int i=0; i<m; i++) {
+      for (int j=0; j<=n; j++) {
+        theta[j]+=rate*(y[i]-h_theta(x[i],theta))*x[i][j];
       }
-      theta[i]+=sum_cost*rate;
     }
   }
   return true;
 }
-double BatchGradientDescent::h_theta(double *x, double *t) {
+double StochasticGradientDescent::h_theta(double *x, double *t) {
   double res=0.0;
   for (int i=0; i<=n; i++) {
     res+=x[i]*theta[i];
   }
   return res;
 }
-void BatchGradientDescent::show_result() {
+void StochasticGradientDescent::show_result() {
   for (int i=0; i<=n; i++) {
     printf("theta %d: %.6f\n", i, theta[i]);
   }
@@ -73,7 +71,7 @@ void BatchGradientDescent::show_result() {
     printf("h_theta %d: %.6f\n", i, y[i]-h_theta(x[i],theta));
   }
 }
-void BatchGradientDescent::work_clear() {
+void StochasticGradientDescent::work_clear() {
   for (int i=0; i<m; i++)
     delete [] x[i];
   delete [] x;
