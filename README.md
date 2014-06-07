@@ -8,6 +8,6 @@ The dataset for checking programs would be in the folder *data*
 Algorithm list
 ==============
 
-* Batch gradient descent
-* Stochastic gradient descent
+* Linear regression -- Batch gradient descent
+* Linear regression -- Stochastic gradient descent
 * Locally weighted linear regression
