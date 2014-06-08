@@ -7,6 +7,9 @@ int main()
 	Matrix *m;
 	m=new Matrix(3,2,(double *)a);
 	m->show_matrix();
+	m->transpose();
+	m->show_matrix();
+
 	delete m;
 	return 0;
 }

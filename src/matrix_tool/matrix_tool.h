@@ -11,6 +11,7 @@ public:
  Matrix(int row, int col);
  Matrix(int row, int col, double *t_mat);
  ~Matrix();
+ void transpose();
  void show_matrix();
 protected:
 private:

@@ -38,12 +38,38 @@ Matrix::~Matrix() {
 		delete [] p_mat;
 	}
 }
+void Matrix::transpose() {
+	if (n_row != n_column) {
+		double **t_mat=new double *[n_column];
+		for (int i=0; i<n_column; i++)	
+			t_mat[i]=new double [n_row];
+		for (int i=0; i<n_row; i++)
+			for (int j=0; j<n_column; j++)
+				t_mat[j][i]=p_mat[i][j];
+		for (int i=0; i<n_row; i++)
+			delete [] p_mat[i];
+		delete p_mat;
+		p_mat=t_mat;
+		int tmp=n_column;
+		n_column=n_row;
+		n_row=tmp;
+	} else {
+		for (int i=0; i<n_row; i++) {
+			for (int j=i+1; j<n_column; j++) {
+				int tmp=p_mat[i][j];
+				p_mat[i][j]=p_mat[j][i];
+				p_mat[j][i]=tmp;
+			}
+		}
+	}
+}
 void Matrix::show_matrix() {
 	std::cout<<n_row<<" "<<n_column<<std::endl;
 	for (int i=0; i<n_row; i++) { 
 		for (int j=0; j<n_column; j++) {
-			std::cout<<p_mat[i][j]<<std::endl;	
+			std::cout<<p_mat[i][j]<<" ";	
 		}
+		std::cout<<std::endl;
 	}
 }
 }
