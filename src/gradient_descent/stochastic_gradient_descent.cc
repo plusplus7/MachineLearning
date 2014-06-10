@@ -40,7 +40,7 @@ int StochasticGradientDescent::work_start(char *filename) {
 bool StochasticGradientDescent::check_convergence() {
   int i;
   for (i=0; i<=n; i++) {
-    if (fabs(o_theta-theta) > eps)
+    if (fabs(o_theta[i]-theta[i]) > eps)
       break;
   }
   return i == n;

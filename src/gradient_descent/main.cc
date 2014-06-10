@@ -4,8 +4,8 @@
 int main(int argc, char **argv)
 {
   char data[]="../../data/gradient_descent_data.data";
-  //BatchGradientDescent *bgd=new BatchGradientDescent();
-  StochasticGradientDescent *sgd=new StochasticGradientDescent();
+  BatchGradientDescent *sgd=new BatchGradientDescent();
+  //StochasticGradientDescent *sgd=new StochasticGradientDescent();
   sgd->work_start(data);
   sgd->work_getanswer();
   sgd->show_result();
