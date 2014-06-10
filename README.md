@@ -13,3 +13,4 @@ Algorithm list
 * Linear regression -- Batch gradient descent
 * Linear regression -- Stochastic gradient descent
 * Locally weighted linear regression
+* Logistic regression
