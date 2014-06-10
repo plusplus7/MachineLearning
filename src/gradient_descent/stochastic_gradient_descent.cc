@@ -2,7 +2,7 @@
 #include <cmath>
 #include <cstring>
 #include "stochastic_gradient_descent.h"
-#define eps 1e-8
+#define eps 1e-13
 StochasticGradientDescent::StochasticGradientDescent() {
   m=0;
   n=0;
@@ -43,11 +43,11 @@ bool StochasticGradientDescent::check_convergence() {
     if (fabs(o_theta[i]-theta[i]) > eps)
       break;
   }
-  return i == n;
+  return i == n+1;
 }
 bool StochasticGradientDescent::work_getanswer() {
-  for (int round=0; round<1000 && !check_convergence(); round++) {
-    memcpy(o_theta,theta,sizeof(theta));
+  for (int round=0; round<100000 && !check_convergence(); round++) {
+	memcpy(o_theta,theta,sizeof(double)*(n+1));
     for (int i=0; i<m; i++) {
       for (int j=0; j<=n; j++) {
         theta[j]+=rate*(y[i]-h_theta(x[i],theta))*x[i][j];

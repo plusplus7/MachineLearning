@@ -2,7 +2,7 @@
 #include <cmath>
 #include <cstring>
 #include "batch_gradient_descent.h"
-#define eps 1e-8
+#define eps 1e-13
 BatchGradientDescent::BatchGradientDescent() {
   m=0;
   n=0;
@@ -43,11 +43,11 @@ bool BatchGradientDescent::check_convergence() {
     if (fabs(o_theta[i]-theta[i]) > eps)
       break;
   }
-  return i == n;
+  return i == n+1;
 }
 bool BatchGradientDescent::work_getanswer() {
   for (int round=0; round<100000 && !check_convergence(); round++) {
-    memcpy(o_theta,theta,sizeof(theta));
+    memcpy(o_theta,theta,sizeof(double)*(n+1));
     for (int i=0; i<=n; i++) {
       double sum_cost=0.0;
       for (int j=0; j<m; j++) {
