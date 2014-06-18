@@ -16,3 +16,4 @@ Algorithm list
 * Linear regression -- Stochastic gradient descent
 * Locally weighted linear regression
 * Logistic regression
+* k-Nearest Neighbors algorithm
