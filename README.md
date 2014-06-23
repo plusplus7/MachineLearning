@@ -24,7 +24,9 @@ How to play
 ==============
 
 Get into one of folders in the *src* folder and use command 'make'.
+
 Then run main like this './main', which would show the result in my last work on this algorithm.
+
 Kind of shabby maybe...
 
 
